@@ -1,0 +1,6 @@
+@host = rent.591.com.tw
+
+GET {{host}}/list
+HTTP/1.1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+Cookie: webp=1; PHPSESSID=ndati8hkng3isr55v12rrtlc2s; T591_TOKEN=ndati8hkng3isr55v12rrtlc2s; is_new_index=1; is_new_index_redirect=1; _gid=GA1.3.913661204.1745746053; _gcl_au=1.1.1668953705.1745746053; tw591__privacy_agree=0; __loc__=MTQwLjExMy4xMjEuMTY4; __one_id__=01JSV95TRXHXB8ZRWYG4J1S3AC; timeDifference=-1; urlJumpIp=4; _ga=GA1.1.1985992378.1745746053; _ga_H07366Z19P=GS1.3.1745746062.1.1.1745746079.43.0.0; index_keyword_search_analysis=%7B%22role%22%3A%220%22%2C%22type%22%3A%221%22%2C%22keyword%22%3A%22%22%2C%22selectKeyword%22%3A%22%22%2C%22menu%22%3A%22%22%2C%22hasHistory%22%3A0%2C%22hasPrompt%22%3A0%2C%22history%22%3A0%7D; __lt__cid=78dca9d4-db2a-40f0-a565-27d5ba748d18; __lt__sid=5f392d2c-97aa04ee; rentPreventFraud=0; _fbp=fb.2.1745746273741.426002227878853679; _ga_HDSPSZ773Q=GS1.1.1745746062.1.1.1745747047.49.0.0
