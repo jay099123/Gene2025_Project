@@ -1,0 +1,1 @@
+start chrome "--profile-directory=Default --new-window --remote-debugging-port=9222"
