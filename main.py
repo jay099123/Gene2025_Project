@@ -4,6 +4,7 @@ import requests
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 }
+
 # urlJumpIp=1; Domain=.591.com.tw; Path=/; Expires=Mon, 27 Apr 2026 10:37:46 GMT
 
 cookie = {
@@ -35,12 +36,14 @@ def parse_content(content):
         price = content[0].find("span", class_="price").text
         area = content[0].find("span", class_="area").text
         address = content[0].find("span", class_="address").text
+        url = content[0].find("a", class_="title")["href"]
 
         data.append({
             "title": title,
             "price": price,
             "area": area,
-            "address": address
+            "address": address,
+            "url": url
         })
 
     return data
@@ -77,17 +80,18 @@ if __name__ == "__main__":
     urls = get_urls()
 
     for url in urls:
-        print("get url: ", url)
+        # print("get url: ", url)
         # get content
         content = get_content(url)
-        print("get content")
+        # print("get content")
         # parse content
         results = parse_content(content)
-        print("parse content")
+        # print("parse content")
 
         for result in results:
             print("title: ", result["title"])
             print("price: ", result["price"])
             print("area: ", result["area"])
             print("address: ", result["address"])
+            print("url: ", result["url"])
             print("=====================================")
