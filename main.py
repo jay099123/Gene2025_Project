@@ -1,3 +1,5 @@
+import json
+import numpy as np
 from bs4 import BeautifulSoup
 import requests
 from tqdm import tqdm
@@ -80,18 +82,20 @@ def get_urls():
     # get total pages
     # total pages : 網站底下總共有幾頁(表可隨時間更新資料)
 
-    first_page = requests.get("https://rent.591.com.tw/list?region=4", headers=headers, cookies=cookie, verify=False)
+    first_page = requests.get("https://rent.591.com.tw/list?region=4",
+                              headers=headers, cookies=cookie, verify=False)
     soup = BeautifulSoup(first_page.text, "html.parser")
 
     links = soup.find_all("a")
-    filtered_links = filter(lambda link: "/list?region=4" in link["href"], links)
+    filtered_links = filter(
+        lambda link: "/list?region=4" in link["href"], links)
     filtered_links = list(filtered_links)
     print("filtered_links: ", filtered_links[-2].text)
 
     total_pages = int(filtered_links[-2].text)
 
     # for i in range(1, total_pages+1):
-    for i in range(1, 3):
+    for i in range(1, 10):
 
         if i == 1:
             urls.append("https://rent.591.com.tw/list?region=4")
@@ -104,6 +108,8 @@ def get_urls():
 if __name__ == "__main__":
     # get url
     urls = get_urls()
+
+    houses = []
 
     for url in tqdm(urls):
         # print("get url: ", url)
@@ -121,3 +127,19 @@ if __name__ == "__main__":
         #     print("address: ", result["address"])
         #     print("url: ", result["url"])
         #     print("=====================================")
+
+        for result in results:
+            houses.append({
+                "title": result["title"],
+                "price": result["price"],
+                "area": result["area"],
+                "address": result["address"],
+                "url": result["url"]
+            })
+
+    # dump json to file with numpy
+    json_dump = json.dumps({"houses": houses}, ensure_ascii=False, indent=4)
+
+    with open("591.json", "w", encoding="utf-8") as f:
+        f.write(json_dump)
+        print("json dump to file: 591.json")
