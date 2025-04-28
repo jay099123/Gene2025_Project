@@ -25,6 +25,12 @@ def parse_content(content):
     :return: None
     """
 
+    """
+    recommend-ware：每一筆物件資料都有的部分
+    ，用來找出每一筆物件的位置(搜尋有20個表每一頁有20筆資料)
+    """
+
+
     soup = BeautifulSoup(content, "html.parser")
     # find all items
     recommend_ware = soup.find_all("div", class_="recommend-ware")
@@ -72,6 +78,7 @@ def get_urls():
     urls = []
 
     # get total pages
+    # total pages : 網站底下總共有幾頁(表可隨時間更新資料)
 
     first_page = requests.get("https://rent.591.com.tw/list?region=4", headers=headers, cookies=cookie, verify=False)
     soup = BeautifulSoup(first_page.text, "html.parser")
@@ -84,7 +91,7 @@ def get_urls():
     total_pages = int(filtered_links[-2].text)
 
     # for i in range(1, total_pages+1):
-    for i in range(1, 10):
+    for i in range(1, 3):
 
         if i == 1:
             urls.append("https://rent.591.com.tw/list?region=4")
